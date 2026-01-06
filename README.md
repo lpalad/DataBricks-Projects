@@ -1,3 +1,31 @@
+<p align="center">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/6/63/Databricks_Logo.png" alt="Databricks Logo" width="200"/>
+</p>
+
+<h1 align="center">Databricks Projects</h1>
+
+<p align="center">
+  <strong>A collection of full-stack applications powered by Databricks SQL</strong>
+</p>
+
+<p align="center">
+  <a href="#the-solution">Projects</a> •
+  <a href="#the-facts-why-this-architecture">Tech Stack</a> •
+  <a href="#usage-no-nonsense-setup">Getting Started</a> •
+  <a href="#project-structure">Structure</a> •
+  <a href="#why-id-hire-the-person-who-wrote-this">About</a>
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Python-3.10+-blue?logo=python&logoColor=white" alt="Python"/>
+  <img src="https://img.shields.io/badge/FastAPI-0.100+-009688?logo=fastapi&logoColor=white" alt="FastAPI"/>
+  <img src="https://img.shields.io/badge/React-18+-61DAFB?logo=react&logoColor=black" alt="React"/>
+  <img src="https://img.shields.io/badge/Databricks-SQL-FF3621?logo=databricks&logoColor=white" alt="Databricks"/>
+  <img src="https://img.shields.io/badge/Vite-5+-646CFF?logo=vite&logoColor=white" alt="Vite"/>
+</p>
+
+---
+
 # Production-Ready Full-Stack Applications That Write Directly to Databricks—Without the $50,000 Middleware Bill
 
 ---
