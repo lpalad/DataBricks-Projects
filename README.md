@@ -50,7 +50,7 @@ With over a decade in the IT field and an MBA, I bridge the gap between technica
 
 ---
 
-## Why Hire Me? (The Aggressive Evidence)
+## Why Hire Me? 
 
 I do not build "features." I deploy **business-critical assets** that protect your margins.
 
