@@ -9,11 +9,11 @@
 </p>
 
 <p align="center">
-  <a href="#the-solution">Projects</a> •
-  <a href="#the-facts-why-this-architecture">Tech Stack</a> •
+  <a href="#the-solutions-real-problems-solved">Projects</a> •
+  <a href="#why-hire-me-the-aggressive-evidence">Tech Stack</a> •
   <a href="#usage-no-nonsense-setup">Getting Started</a> •
   <a href="#project-structure">Structure</a> •
-  <a href="#why-id-hire-the-person-who-wrote-this">About</a>
+  <a href="#about-me-leonard-s-palad">About</a>
 </p>
 
 <p align="center">
@@ -26,102 +26,73 @@
 
 ---
 
-# Production-Ready Full-Stack Applications That Write Directly to Databricks—Without the $50,000 Middleware Bill
+# Direct-to-Databricks: Full-Stack Power. Zero SaaS Bloat.
+
+**Eliminating the $50,000 Complexity Overhead. Production-ready code for the Australian market.**
 
 ---
 
-## The Problem
+## Executive Summary: Engineering Profit through Data Rigor
 
-Most companies waste 3-6 months building data pipelines.
+Most Australian organisations are over-paying for data movement.
 
-They hire contractors. They buy expensive middleware. They create technical debt that haunts them for years.
+They waste **$50,000 in annual licensing** and **6 months of engineering time** on fragile middleware just to move a web lead into a database.
 
-Meanwhile, their sales data sits in spreadsheets. Their customer information lives in someone's inbox. Their "single source of truth" is actually seven sources of chaos.
+This is a failure of logic.
 
-**The cost of this failure?**
-- $50,000+ in middleware licensing
-- 6+ months of developer time
-- Data integrity issues that erode trust
-- Manual reconciliation that burns analyst hours
+With over a decade in the IT field and an MBA, I bridge the gap between technical architecture and the commercial bottom line. My work is defined by three logical pillars:
 
-This repository eliminates that waste.
+**Certainty:** I build direct-write systems. By removing the "middleman" (ETL tools), I eliminate the primary source of data corruption and sync lag.
 
----
+**Efficiency:** I use FastAPI and Vite to bypass technical debt. I deliver systems that handle 40,000 requests per second and build 10x faster than legacy frameworks.
 
-## The Solution
-
-This is not a proof-of-concept.
-
-This is production-grade code that connects web applications directly to Databricks SQL Warehouse. No middleware. No ETL pipelines. No waiting.
-
-**What you get:**
-
-| Application | What It Does | Business Value |
-|-------------|--------------|----------------|
-| **Contact Form** | Captures leads directly into Databricks | Zero data entry. Zero lag. Every lead tracked. |
-| **Tesla Sales Analytics** | Full order management with customer deduplication | Real-time sales data. Automatic GST calculation. Instant reporting. |
+**Fiscal Discipline:** I treat complexity as a liability. This repository proves that you can achieve ACID-compliant, production-grade data ingestion without expensive SaaS subscriptions or ongoing "connector" fees.
 
 ---
 
-## The Facts (Why This Architecture)
+## Why Hire Me? (The Aggressive Evidence)
 
-**1. FastAPI Backend — 40,000 requests/second capability**
+I do not build "features." I deploy **business-critical assets** that protect your margins.
 
-Not Flask. Not Django. FastAPI.
-
-Why? Because it generates OpenAPI documentation automatically. Because it validates data with Pydantic before it touches your database. Because when your sales team submits 500 orders on launch day, it won't collapse.
-
-**2. Direct Databricks SQL Connection — No middleware**
-
-The `databricks-sql-connector` writes directly to Delta Lake tables.
-
-No Kafka. No Airflow. No Fivetran. No $2,000/month SaaS tool.
-
-One connection. ACID transactions. Data arrives in milliseconds.
-
-**3. React + Vite Frontend — 10x faster builds than Create React App**
-
-Vite uses native ES modules. Cold starts in under 300ms.
-
-Your developers spend time building features, not waiting for webpack.
-
-**4. Customer Deduplication Logic — Built-in**
-
-The sales application checks for existing customers before creating duplicates.
-
-This is the logic that prevents the chaos of "John Smith" appearing 47 times in your CRM.
-
-**5. Environment Variable Security — No hardcoded credentials**
-
-Credentials are never in the codebase. Period.
-
-`DATABRICKS_HOST`, `DATABRICKS_TOKEN`, and `DATABRICKS_HTTP_PATH` are injected at runtime. This passes security audits.
+| The Asset | The Logical Proof | The Economic Impact |
+|-----------|-------------------|---------------------|
+| **Architectural Lean** | Direct Databricks SQL connection via FastAPI. No Kafka or Airflow required. | Saves $50k+ in OpEx. Removes third-party SaaS fees and contractor hours. |
+| **Data Integrity Gate** | Pydantic validation & customer deduplication logic built into the API. | Protects the "Truth." Eliminates the high cost of manual data cleaning. |
+| **Security Hardening** | Environment variable injection with zero hardcoded credentials. | Reduces Risk. Passes Australian security audits and eliminates SQL vulnerabilities. |
+| **High-Velocity Build** | Vite + React frontend architecture with sub-300ms cold starts. | Maximizes ROI. 10x faster feature delivery than legacy builds. |
 
 ---
 
-## Why I'd Hire the Person Who Wrote This
+## The Solutions: Real Problems. Solved.
 
-Look at the code. Not the README. The code.
+### Project 01: Direct Contact-to-Databricks
 
-You will find:
+**The Problem:** Leads lost in spreadsheets or trapped in expensive CRM queues.
 
-- **Parameterized SQL queries** — No string concatenation. No SQL injection vulnerabilities.
-- **Proper error handling** — Try/catch blocks that return meaningful HTTP status codes, not stack traces.
-- **Connection pooling awareness** — Database connections are opened, used, and closed. No leaked connections.
-- **Separation of concerns** — Frontend knows nothing about database credentials. Backend knows nothing about CSS.
-- **Idempotent operations** — Running `create_tables.py` twice doesn't break anything.
+**The Logic:** Direct API-to-Lakehouse write. Zero lag.
 
-This is not tutorial code. This is the code of someone who has been woken up at 3 AM because a production system failed.
+**The Result:** Every lead is tracked instantly. Zero data entry waste.
+
+---
+
+### Project 02: Tesla Sales Analytics (Deduplication Engine)
+
+**The Problem:** Sales data arriving with duplicates and incorrect GST calculations.
+
+**The Logic:** Built-in customer matching and automated GST logic at the point of entry.
+
+**The Result:** Audit-ready sales data. One "John Smith" in the DB, not 47.
 
 ---
 
 ## Usage: No-Nonsense Setup
 
+**From clone to production in under 5 minutes.**
+
 ### Prerequisites
-- Python 3.10+
-- Node.js 18+
-- Databricks SQL Warehouse access
-- A Personal Access Token (PAT)
+
+- Python 3.10+ | Node.js 18+
+- Databricks SQL Warehouse access & Personal Access Token (PAT)
 
 ### Step 1: Set Your Credentials
 
@@ -143,7 +114,7 @@ cd DataBricks-Projects/02-tesla-sales-analytics
 ```bash
 cd backend
 python -m venv venv
-source venv/bin/activate
+source venv/bin/activate  # Use venv\Scripts\activate on Windows
 pip install -r requirements.txt
 uvicorn main:app --reload --port 8001
 ```
@@ -195,7 +166,7 @@ DataBricks-Projects/
 
 ---
 
-## Database Schema
+## Database Schema (Australian Tax Standards)
 
 ```sql
 -- Customers: Auto-incrementing ID, no duplicates
@@ -229,14 +200,16 @@ CREATE TABLE default.sales (
 
 ---
 
-## The Bottom Line
+## About Me: Leonard S Palad
 
-You can spend six months and $50,000 building a "proper" data pipeline.
+**MBA | Master of AI (In Progress)**
 
-Or you can use this architecture.
+I build data systems that connect directly to commercial outcomes.
 
-Same result. Fraction of the cost. Ships this week.
+With over a decade in the IT field, I have built production ML systems, managed AWS-to-Azure migrations, and saved Australian businesses thousands in unnecessary cloud fees.
+
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0A66C2?logo=linkedin&logoColor=white)](https://www.linkedin.com/in/leonardpalad/) [![AWS Portfolio](https://img.shields.io/badge/AWS-Portfolio-FF9900?logo=amazonaws&logoColor=white)](https://github.com/lpalad)
 
 ---
 
-**Built for Databricks. Built for production. Built to save you money.**
+**Built for Databricks. Built for Australia. Built to protect your margins.**
