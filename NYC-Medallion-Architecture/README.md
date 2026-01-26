@@ -46,7 +46,8 @@ NYC-Medallion-Architecture/
 │   ├── 03_silver_enrichment.py
 │   └── 04_gold_aggregation.py
 ├── images/
-│   └── (screenshots of catalog structure, outputs)
+│   ├── PickUpDateVsTotalRevenue.png
+│   └── PickUpDateVsTotalTrips.png
 └── sql/
     └── analytics_queries.sql
 ```
@@ -183,6 +184,14 @@ ORDER BY total_trips DESC;
 - **Unity Catalog**: Provides governance, lineage tracking, and managed storage
 - **Delta Lake**: Enables ACID transactions, time travel, and schema evolution
 - **Medallion Architecture**: Bronze (raw) → Silver (cleansed/enriched) → Gold (aggregated)
+
+## Visualizations
+
+### Daily Trips Over Time
+![Pickup Date vs Total Trips](images/PickUpDateVsTotalTrips.png)
+
+### Daily Revenue Over Time
+![Pickup Date vs Total Revenue](images/PickUpDateVsTotalRevenue.png)
 
 ## Data Source
 
