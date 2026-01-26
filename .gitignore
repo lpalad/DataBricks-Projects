@@ -1,0 +1,17 @@
+# macOS
+.DS_Store
+
+# Large data files (use Git LFS or download separately)
+*.parquet
+
+# Keep CSV files (small)
+!*.csv
+
+# Python
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# IDE
+.vscode/
+.idea/
