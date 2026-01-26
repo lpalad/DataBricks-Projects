@@ -1,5 +1,10 @@
 # macOS
 .DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Thumbs.db
 
 # Large data files (use Git LFS or download separately)
 *.parquet
@@ -9,9 +14,41 @@
 
 # Python
 __pycache__/
-*.pyc
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+.venv/
+ENV/
+env/
+.env
+*.egg-info/
+dist/
+build/
 .ipynb_checkpoints/
+
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
 
 # IDE
 .vscode/
 .idea/
+*.swp
+*.swo
+*~
+
+# Project specific
+*.log
+.cache/
+.vite/
+
+# Secrets - NEVER commit these
+*.pem
+*.key
+credentials.json
+secrets.json
