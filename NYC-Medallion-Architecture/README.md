@@ -200,5 +200,5 @@ https://www.nyc.gov/site/tlc/about/tlc-trip-record-data.page
 
 ---
 
-**Author:** [Your Name]
-**GitHub:** [github.com/lpalad/DataBricks-Projects](https://github.com/lpalad/DataBricks-Projects)
+**Author:** Leonard S Palad
+**GitHub:** [NYC-Medallion-Architecture](https://github.com/lpalad/DataBricks-Projects/tree/main/NYC-Medallion-Architecture)
