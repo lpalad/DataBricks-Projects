@@ -85,6 +85,24 @@ I do not build "features." I deploy **business-critical assets** that protect yo
 
 ---
 
+### Project 03: [NYC Taxi Medallion Architecture Pipeline](./NYC-Medallion-Architecture/)
+
+**The Problem:** Raw operational data scattered across files, unfit for analytics.
+
+**The Logic:** End-to-end Medallion Architecture (Bronze → Silver → Gold) with PySpark ETL workflows, multi-table joins for dimension enrichment, and daily aggregations.
+
+**The Result:** Production-ready data lakehouse with cleansed, enriched, and aggregated tables ready for business intelligence reporting.
+
+| Layer | Purpose | Output |
+|-------|---------|--------|
+| **Bronze** | Raw ingestion with audit timestamp | `yellow_trips_raw` |
+| **Silver** | Cleansed + enriched with zone lookups | `yellow_trips_cleansed`, `yellow_trips_joined` |
+| **Gold** | Daily aggregated metrics | `daily_trip_summary` |
+
+**Tech Stack:** Databricks, PySpark, Delta Lake, Unity Catalog, SQL
+
+---
+
 ## Usage: No-Nonsense Setup
 
 **From clone to production in under 5 minutes.**
@@ -153,6 +171,18 @@ DataBricks-Projects/
 │   └── scripts/
 │       ├── create_tables.py     # Customers + Sales tables
 │       └── populate_fake_data.py # 200 test records
+│
+├── NYC-Medallion-Architecture/
+│   ├── README.md                # Project documentation
+│   ├── data/sample/             # Sample data (taxi_zone_lookup.csv)
+│   ├── notebooks/
+│   │   ├── 00_setup_catalog.py  # Unity Catalog setup
+│   │   ├── 01_bronze_ingestion.py
+│   │   ├── 02_silver_cleansing.py
+│   │   ├── 03_silver_enrichment.py
+│   │   └── 04_gold_aggregation.py
+│   └── sql/
+│       └── analytics_queries.sql # Business analytics queries
 ```
 
 ---
