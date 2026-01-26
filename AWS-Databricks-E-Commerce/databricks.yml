@@ -1,0 +1,119 @@
+# Databricks Asset Bundle Configuration
+# Deploy with: databricks bundle deploy --target dev
+
+bundle:
+  name: ecommerce-data-platform
+
+variables:
+  catalog:
+    default: workspace
+  schema:
+    default: ecom_prod
+  s3_landing_bucket:
+    default: ecommerce-landing-zone
+
+workspace:
+  host: https://dbc-c327ac11-d179.cloud.databricks.com
+
+targets:
+  dev:
+    default: true
+    workspace:
+      root_path: /Workspace/Users/${workspace.current_user.userName}/ecommerce-data-platform
+
+  prod:
+    workspace:
+      root_path: /Workspace/Shared/ecommerce-data-platform
+
+resources:
+  # Delta Live Tables Pipeline (Serverless)
+  pipelines:
+    ecommerce_dlt_pipeline:
+      name: "ecommerce-dlt-pipeline"
+      catalog: "${var.catalog}"
+      target: "${var.schema}"
+      development: true
+      continuous: false
+      channel: "CURRENT"
+      photon: true
+      serverless: true
+      libraries:
+        - notebook:
+            path: ./pipelines/dlt_pipeline.py
+      configuration:
+        "catalog": "${var.catalog}"
+        "schema": "${var.schema}"
+        "s3_landing_path": "s3://${var.s3_landing_bucket}"
+
+  # Multi-Task Job (Serverless)
+  jobs:
+    daily_etl_job:
+      name: "ecommerce-daily-etl"
+      schedule:
+        quartz_cron_expression: "0 0 6 * * ?"
+        timezone_id: "Australia/Sydney"
+      email_notifications:
+        on_failure:
+          - "${workspace.current_user.userName}"
+      tasks:
+        - task_key: "land_new_data"
+          notebook_task:
+            notebook_path: ./src/bronze/01_land_data.py
+            source: WORKSPACE
+          environment_key: "default"
+
+        - task_key: "bronze_ingestion"
+          depends_on:
+            - task_key: "land_new_data"
+          notebook_task:
+            notebook_path: ./src/bronze/02_bronze_ingestion.py
+            source: WORKSPACE
+          environment_key: "default"
+
+        - task_key: "silver_customers"
+          depends_on:
+            - task_key: "bronze_ingestion"
+          notebook_task:
+            notebook_path: ./src/silver/01_silver_customers.py
+            source: WORKSPACE
+          environment_key: "default"
+
+        - task_key: "silver_orders"
+          depends_on:
+            - task_key: "bronze_ingestion"
+          notebook_task:
+            notebook_path: ./src/silver/02_silver_orders.py
+            source: WORKSPACE
+          environment_key: "default"
+
+        - task_key: "silver_products"
+          depends_on:
+            - task_key: "bronze_ingestion"
+          notebook_task:
+            notebook_path: ./src/silver/03_silver_products.py
+            source: WORKSPACE
+          environment_key: "default"
+
+        - task_key: "gold_sales_summary"
+          depends_on:
+            - task_key: "silver_customers"
+            - task_key: "silver_orders"
+            - task_key: "silver_products"
+          notebook_task:
+            notebook_path: ./src/gold/01_gold_sales_summary.py
+            source: WORKSPACE
+          environment_key: "default"
+
+        - task_key: "gold_customer_analytics"
+          depends_on:
+            - task_key: "silver_customers"
+            - task_key: "silver_orders"
+          notebook_task:
+            notebook_path: ./src/gold/02_gold_customer_analytics.py
+            source: WORKSPACE
+          environment_key: "default"
+
+      environments:
+        - environment_key: "default"
+          spec:
+            client: "1"

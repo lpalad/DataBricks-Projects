@@ -1,0 +1,38 @@
+# Environment files with secrets
+.env
+.env.local
+.env.example
+.aws-config
+
+# Databricks
+.databricks/
+*.egg-info/
+dist/
+build/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+.pytest_cache/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfvars
+
+# Logs
+*.log
+logs/

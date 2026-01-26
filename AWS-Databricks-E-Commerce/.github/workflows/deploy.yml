@@ -1,0 +1,72 @@
+name: Deploy to Databricks
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+env:
+  DATABRICKS_HOST: ${{ secrets.DATABRICKS_HOST }}
+  DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN }}
+
+jobs:
+  validate:
+    name: Validate Bundle
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Databricks CLI
+        run: |
+          curl -fsSL https://raw.githubusercontent.com/databricks/setup-cli/main/install.sh | sh
+
+      - name: Validate bundle
+        run: databricks bundle validate
+
+  deploy-dev:
+    name: Deploy to Dev
+    needs: validate
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Databricks CLI
+        run: |
+          curl -fsSL https://raw.githubusercontent.com/databricks/setup-cli/main/install.sh | sh
+
+      - name: Deploy to dev
+        run: databricks bundle deploy --target dev
+
+  deploy-prod:
+    name: Deploy to Production
+    needs: validate
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    environment: production
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Databricks CLI
+        run: |
+          curl -fsSL https://raw.githubusercontent.com/databricks/setup-cli/main/install.sh | sh
+
+      - name: Deploy to production
+        run: databricks bundle deploy --target prod
+
+      - name: Run DLT Pipeline
+        run: |
+          databricks pipelines start --pipeline-id ${{ vars.DLT_PIPELINE_ID }} --full-refresh false
+
+  notify:
+    name: Notify on Failure
+    needs: [deploy-dev, deploy-prod]
+    runs-on: ubuntu-latest
+    if: failure()
+    steps:
+      - name: Send failure notification
+        run: |
+          echo "Deployment failed! Check GitHub Actions logs."
+          # Add Slack/email notification here

@@ -103,6 +103,25 @@ I do not build "features." I deploy **business-critical assets** that protect yo
 
 ---
 
+### Project 04: [AWS Databricks E-Commerce Platform](./AWS-Databricks-E-Commerce/)
+
+**The Problem:** E-commerce order data trapped in WooCommerce, inaccessible for real-time analytics.
+
+**The Logic:** Serverless webhook ingestion via AWS Lambda → S3 Landing Zone → Databricks Delta Live Tables pipeline with Medallion Architecture.
+
+**The Result:** Real-time order analytics with automated ETL, customer deduplication, and sales dashboards.
+
+| Component | Technology |
+|-----------|------------|
+| **Ingestion** | AWS Lambda + API Gateway (webhook receiver) |
+| **Landing Zone** | S3 bucket with event-driven triggers |
+| **Processing** | Databricks Delta Live Tables (Serverless) |
+| **Orchestration** | Databricks Asset Bundles + GitHub Actions CI/CD |
+
+**Tech Stack:** AWS (Lambda, S3, API Gateway), Databricks, Delta Live Tables, PySpark, Terraform
+
+---
+
 ## Usage: No-Nonsense Setup
 
 **From clone to production in under 5 minutes.**
@@ -183,6 +202,19 @@ DataBricks-Projects/
 │   │   └── 04_gold_aggregation.py
 │   └── sql/
 │       └── analytics_queries.sql # Business analytics queries
+│
+├── AWS-Databricks-E-Commerce/
+│   ├── README.md                # Project documentation
+│   ├── databricks.yml           # Databricks Asset Bundle config
+│   ├── infrastructure/
+│   │   ├── lambda/              # AWS Lambda webhook handler
+│   │   └── terraform/           # Infrastructure as Code
+│   ├── pipelines/
+│   │   └── dlt_pipeline.py      # Delta Live Tables pipeline
+│   └── src/
+│       ├── bronze/              # Raw data ingestion
+│       ├── silver/              # Data cleansing & transformation
+│       └── gold/                # Business aggregations
 ```
 
 ---

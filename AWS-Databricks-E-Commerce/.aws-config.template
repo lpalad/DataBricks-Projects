@@ -1,0 +1,7 @@
+# AWS Resource Configuration
+# Update these values after deploying your infrastructure
+
+AWS_REGION=ap-southeast-2
+S3_BUCKET=your-landing-zone-bucket
+LAMBDA_ARN=arn:aws:lambda:ap-southeast-2:YOUR_ACCOUNT_ID:function:your-function-name
+API_ENDPOINT=https://your-api-id.execute-api.ap-southeast-2.amazonaws.com/webhook
